@@ -119,7 +119,7 @@ Les valeurs sont :
 
 ## Résultat du mode réaliste
 
-![Fin du mode réaliste](Images/ModeRealiste.png)
+![Fin du mode réaliste](Images/ModeReel.png)
 
 ---
 
