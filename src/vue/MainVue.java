@@ -5,15 +5,15 @@ import javax.swing.*;
 
 public class MainVue extends JPanel {
     // Boutons de contrôle
-    public final JButton btnStepByStep = new JButton("⏭️ Étape suivante");
-    public final JButton btnDHFull = new JButton("🔐 Démo DH complète");
-    public final JButton btnAutoDemo = new JButton("▶️ Mode automatique");
-    public final JButton btnClear = new JButton("🔄 Réinitialiser");
+    public final JButton btnStepByStep = new JButton("Étape suivante");
+    public final JButton btnDHFull = new JButton("Démo DH complète");
+    public final JButton btnAutoDemo = new JButton("Mode automatique");
+    public final JButton btnClear = new JButton("Réinitialiser");
     
     // Boutons pour le mode réaliste
-    public final JButton btnRealisticMode = new JButton("🎲 Passer en mode réaliste");
-    public final JButton btnGenerateNew = new JButton("🔄 Nouvelles valeurs");
-    public final JLabel modeLabel = new JLabel("📚 Mode : Pédagogique");
+    public final JButton btnRealisticMode = new JButton("Passer en mode réaliste");
+    public final JButton btnGenerateNew = new JButton("Nouvelles valeurs");
+    public final JLabel modeLabel = new JLabel("Mode : Pédagogique");
     
     // Onglets
     public final JTabbedPane tabbedPane = new JTabbedPane();
@@ -50,8 +50,8 @@ public class MainVue extends JPanel {
         JPanel dhClassicPanel = createDHClassicPanel();
         JPanel ecdhPanel = createECDHPanel();
         
-        tabbedPane.addTab("🔢 Diffie-Hellman Classique", dhClassicPanel);
-        tabbedPane.addTab("📈 Diffie-Hellman sur Courbe Elliptique", ecdhPanel);
+        tabbedPane.addTab("Diffie-Hellman Classique", dhClassicPanel);
+        tabbedPane.addTab("Diffie-Hellman sur Courbe Elliptique", ecdhPanel);
         
         add(topPanel, BorderLayout.NORTH);
         add(tabbedPane, BorderLayout.CENTER);
@@ -135,13 +135,13 @@ public class MainVue extends JPanel {
         alicePanel.setLayout(new BoxLayout(alicePanel, BoxLayout.Y_AXIS));
         alicePanel.setBorder(BorderFactory.createTitledBorder(
             BorderFactory.createLineBorder(Color.PINK, 2), 
-            "👩 Alice"));
+            "Alice"));
         alicePanel.setBackground(new Color(255, 240, 245));
         alicePanel.add(Box.createVerticalStrut(10));
-        alicePanel.add(createCenteredLabel("🔒 Données privées:"));
+        alicePanel.add(createCenteredLabel("Données privées:"));
         alicePanel.add(aliceSecretLabel);
         alicePanel.add(Box.createVerticalStrut(10));
-        alicePanel.add(createCenteredLabel("📢 Données publiques:"));
+        alicePanel.add(createCenteredLabel("Données publiques:"));
         alicePanel.add(alicePublicLabel);
         alicePanel.add(Box.createVerticalGlue());
         
@@ -149,16 +149,16 @@ public class MainVue extends JPanel {
         publicSpacePanel.setLayout(new BoxLayout(publicSpacePanel, BoxLayout.Y_AXIS));
         publicSpacePanel.setBorder(BorderFactory.createTitledBorder(
             BorderFactory.createLineBorder(Color.ORANGE, 2), 
-            "🌐 Espace Public (visible par tous)"));
+            "Espace Public (visible par tous)"));
         publicSpacePanel.setBackground(new Color(255, 250, 230));
         publicSpacePanel.add(Box.createVerticalStrut(20));
-        publicSpacePanel.add(createCenteredLabel("📋 Paramètres communs:"));
+        publicSpacePanel.add(createCenteredLabel("Paramètres communs:"));
         publicSpacePanel.add(createCenteredLabel("p (nombre premier)"));
         publicSpacePanel.add(createCenteredLabel("g (générateur)"));
         publicSpacePanel.add(Box.createVerticalStrut(20));
         publicSpacePanel.add(new JSeparator());
         publicSpacePanel.add(Box.createVerticalStrut(10));
-        publicSpacePanel.add(createCenteredLabel("🔑 Secret partagé:"));
+        publicSpacePanel.add(createCenteredLabel("Secret partagé:"));
         publicSpacePanel.add(sharedSecretLabel);
         publicSpacePanel.add(Box.createVerticalGlue());
         
@@ -166,13 +166,13 @@ public class MainVue extends JPanel {
         bobPanel.setLayout(new BoxLayout(bobPanel, BoxLayout.Y_AXIS));
         bobPanel.setBorder(BorderFactory.createTitledBorder(
             BorderFactory.createLineBorder(Color.CYAN, 2), 
-            "👨 Bob"));
+            "Bob"));
         bobPanel.setBackground(new Color(240, 248, 255));
         bobPanel.add(Box.createVerticalStrut(10));
-        bobPanel.add(createCenteredLabel("🔒 Données privées:"));
+        bobPanel.add(createCenteredLabel("Données privées:"));
         bobPanel.add(bobSecretLabel);
         bobPanel.add(Box.createVerticalStrut(10));
-        bobPanel.add(createCenteredLabel("📢 Données publiques:"));
+        bobPanel.add(createCenteredLabel("Données publiques:"));
         bobPanel.add(bobPublicLabel);
         bobPanel.add(Box.createVerticalGlue());
         
@@ -185,7 +185,7 @@ public class MainVue extends JPanel {
     
     private JPanel createExchangeVisualPanel() {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBorder(BorderFactory.createTitledBorder("📤 Visualisation de l'échange"));
+        panel.setBorder(BorderFactory.createTitledBorder("Visualisation de l'échange"));
         
         exchangeArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
         exchangeArea.setEditable(false);
@@ -201,7 +201,7 @@ public class MainVue extends JPanel {
     
     private JPanel createDetailsPanel() {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBorder(BorderFactory.createTitledBorder("📝 Détails des calculs"));
+        panel.setBorder(BorderFactory.createTitledBorder("Détails des calculs"));
         
         dhStepsArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
         dhStepsArea.setEditable(false);
@@ -223,19 +223,19 @@ public class MainVue extends JPanel {
         
         // Panel gauche : courbe elliptique complète avec légende
         JPanel leftPanel = new JPanel(new BorderLayout());
-        leftPanel.setBorder(BorderFactory.createTitledBorder("📈 Vue Complète - Protocole ECDH"));
+        leftPanel.setBorder(BorderFactory.createTitledBorder("Vue Complète - Protocole ECDH"));
         leftPanel.add(ecPanel, BorderLayout.CENTER);
         
         // Panel droit : opérations sur courbe (2A)
         JPanel rightPanel = new JPanel(new BorderLayout());
-        rightPanel.setBorder(BorderFactory.createTitledBorder("🔍 Opérations - Doublement de Point"));
+        rightPanel.setBorder(BorderFactory.createTitledBorder("Opérations - Doublement de Point"));
         rightPanel.add(ecOperationsPanel, BorderLayout.CENTER);
         
         // Boutons de contrôle des opérations
         JPanel operationsControlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JButton btnResetOp = new JButton("🔄 Recommencer");
-        JButton btnNextStep = new JButton("⏭️ Étape suivante");
-        JButton btnShowAll = new JButton("📋 Tout afficher");
+        JButton btnResetOp = new JButton("Recommencer");
+        JButton btnNextStep = new JButton("⏭Étape suivante");
+        JButton btnShowAll = new JButton("Tout afficher");
         
         btnResetOp.addActionListener(e -> ecOperationsPanel.reset());
         btnNextStep.addActionListener(e -> ecOperationsPanel.nextStep());
@@ -252,7 +252,7 @@ public class MainVue extends JPanel {
         
         // Panel inférieur : explications ECDH
         JPanel bottomPanel = new JPanel(new BorderLayout());
-        bottomPanel.setBorder(BorderFactory.createTitledBorder("🔐 ECDH - Explication du Protocole"));
+        bottomPanel.setBorder(BorderFactory.createTitledBorder("ECDH - Explication du Protocole"));
         
         JTextArea ecdhExplanation = new JTextArea();
         ecdhExplanation.setFont(new Font("SansSerif", Font.PLAIN, 13));
@@ -261,14 +261,14 @@ public class MainVue extends JPanel {
         ecdhExplanation.setWrapStyleWord(true);
         ecdhExplanation.setMargin(new Insets(10, 10, 10, 10));
         ecdhExplanation.setText("""
-            🎯 PRINCIPE DE L'ECDH
+            PRINCIPE DE L'ECDH
             
             Au lieu d'utiliser l'exponentiation modulaire (g^x mod p), ECDH utilise la multiplication 
             de points sur une courbe elliptique.
             
-            📐 Courbe: y² = x³ + ax + b
+            Courbe: y² = x³ + ax + b
             
-            🔢 ÉTAPES DU PROTOCOLE:
+            ÉTAPES DU PROTOCOLE:
             1. Alice et Bob partent du point G (générateur) sur la courbe
             2. Alice choisit un nombre secret nA
             3. Bob choisit un nombre secret nB
@@ -279,19 +279,19 @@ public class MainVue extends JPanel {
             8. Bob calcule S = nB × PA = nB × (nA × G)
             9. Les deux obtiennent le même point S car nA × PB = nA × (nB × G) = nB × (nA × G) = nB × PA!
             
-            🧮 OPÉRATIONS SUR COURBES:
+            OPÉRATIONS SUR COURBES:
             • Addition P + Q : Tracer la droite passant par P et Q, trouver le 3ème point d'intersection,
               puis prendre sa symétrie par rapport à l'axe x
             • Doublement 2P = P + P : Tracer la TANGENTE en P, trouver l'intersection avec la courbe,
               puis prendre sa symétrie par rapport à l'axe x
             
-            ✨ AVANTAGES par rapport à DH classique:
+            AVANTAGES par rapport à DH classique:
             • Clés beaucoup plus courtes (256 bits vs 2048 bits) pour la même sécurité
             • Calculs plus rapides
             • Moins de bande passante nécessaire
             • Utilisé dans TLS 1.3, SSH moderne, Bitcoin, applications mobiles...
             
-            🔒 SÉCURITÉ:
+            SÉCURITÉ:
             Basé sur le problème du logarithme discret sur courbe elliptique (ECDLP).
             C'est encore plus difficile à résoudre que le logarithme discret classique !
             """);

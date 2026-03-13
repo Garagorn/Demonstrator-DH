@@ -1,76 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="elliptic" default="run" basedir=".">
 
-    <!-- ============ Propriétés globales ============ -->
+    <!-- ===== Propriétés ===== -->
     <property name="app.name" value="elliptic"/>
     <property name="app.version" value="1.0"/>
     <property name="app.fullname" value="${app.name}-${app.version}"/>
 
-    <property name="build.home" value="${basedir}/build"/>
-    <property name="build.test.home" value="${basedir}/build/test"/>
-    <property name="dist.home" value="${basedir}/dist"/>
-    <property name="docs.home" value="${basedir}/docs"/>
-    <property name="src.home" value="${basedir}/src"/>
-    <property name="src.test.home" value="${basedir}/test"/>
-    <property name="test.report.home" value="${basedir}/build/test/results"/>
-    <property name="lib.home" value="${basedir}/lib"/>
-    <property name="javac.encoding" value="UTF-8"/>
+    <property name="src.home" value="src"/>
+    <property name="build.home" value="build"/>
+    <property name="dist.home" value="dist"/>
 
-    <!-- Chemin vers JavaFX SDK -->
-    <property name="javafx.lib" value="${lib.home}/javafx-sdk-17.0.10/lib"/>
-
-    <!-- ============ Options de compilation ============ -->
-    <property name="compile.debug" value="true"/>
-    <property name="compile.deprecation" value="false"/>
-    <property name="compile.optimize" value="true"/>
-
-    <!-- ============ Classpath ============ -->
-    <path id="compile.classpath">
-        <fileset dir="${lib.home}">
-            <include name="**/*.jar"/>
-        </fileset>
-    </path>
-
-    <!-- ============ clean ============ -->
-    <target name="clean" description="Supprime les dossiers de build et dist">
+    <!-- ===== Clean ===== -->
+    <target name="clean">
         <delete dir="${build.home}"/>
-        <delete dir="${build.test.home}"/>
         <delete dir="${dist.home}"/>
-        <delete dir="${test.report.home}"/>
     </target>
 
-    <!-- ============ prepare ============ -->
+    <!-- ===== Préparation ===== -->
     <target name="prepare">
         <mkdir dir="${build.home}"/>
-        <mkdir dir="${build.test.home}"/>
         <mkdir dir="${dist.home}"/>
-        <mkdir dir="${test.report.home}"/>
     </target>
 
-    <!-- ============ compile ============ -->
-    <target name="compile" depends="prepare" description="Compile les sources Java">
-        <javac srcdir="${src.home}" destdir="${build.home}"
-               debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}"
-               encoding="${javac.encoding}" includeantruntime="false">
-            <classpath refid="compile.classpath"/>
-            <modulepath>
-                <fileset dir="${javafx.lib}">
-                    <include name="*.jar"/>
-                </fileset>
-            </modulepath>
-            <compilerarg value="--add-modules"/>
-            <compilerarg value="javafx.controls,javafx.fxml"/>
-        </javac>
+    <!-- ===== Compilation ===== -->
+    <target name="compile" depends="prepare">
+        <javac srcdir="${src.home}"
+               destdir="${build.home}"
+               includeantruntime="false"
+               encoding="UTF-8"/>
+        
         <copy todir="${build.home}">
             <fileset dir="${src.home}" excludes="**/*.java"/>
         </copy>
     </target>
 
-    <!-- ============ dist ============ -->
-    <target name="dist" depends="clean,compile,javadoc" description="Crée le JAR de distribution">
-        <copy todir="${dist.home}/lib">
-            <fileset dir="${lib.home}"/>
-        </copy>
+    <!-- ===== Création JAR ===== -->
+    <target name="dist" depends="clean,compile">
         <jar jarfile="${dist.home}/${app.fullname}.jar" basedir="${build.home}">
             <manifest>
                 <attribute name="Main-Class" value="Main"/>
@@ -78,61 +43,9 @@
         </jar>
     </target>
 
-    <!-- ============ javadoc ============ -->
-    <target name="javadoc" depends="compile" description="Génère la documentation Javadoc">
-        <mkdir dir="${dist.home}/docs/api"/>
-        <javadoc sourcepath="${src.home}" destdir="${dist.home}/docs/api" packagenames="*">
-            <classpath>
-                <fileset dir="${lib.home}">
-                    <include name="**/*.jar"/>
-                </fileset>
-            </classpath>
-        </javadoc>
+    <!-- ===== Exécution ===== -->
+    <target name="run" depends="dist">
+        <java jar="${dist.home}/${app.fullname}.jar" fork="true"/>
     </target>
 
-    <!-- ============ run ============ -->
-    <target name="run" depends="dist" description="Exécute l'application">
-        <java jar="${dist.home}/${app.fullname}.jar" fork="true">
-            <jvmarg value="--module-path"/>
-            <jvmarg value="${javafx.lib}"/>
-            <jvmarg value="--add-modules"/>
-            <jvmarg value="javafx.controls,javafx.fxml"/>
-        </java>
-    </target>
-
-    <!-- ============ run-english ============ -->
-    <target name="run-english" depends="dist">
-        <java jar="${dist.home}/${app.fullname}.jar" fork="true">
-            <jvmarg value="-Duser.language=en"/>
-            <jvmarg value="--module-path"/>
-            <jvmarg value="${javafx.lib}"/>
-            <jvmarg value="--add-modules"/>
-            <jvmarg value="javafx.controls,javafx.fxml"/>
-        </java>
-    </target>
-
-    <!-- ============ test (optionnel) ============ -->
-    <target name="test" depends="clean,compile,dist">
-        <junit fork="true" printsummary="withOutAndErr" haltonfailure="false" showoutput="true" logfailedtests="true">
-            <classpath>
-                <pathelement location="${build.test.home}"/>
-                <pathelement location="${build.home}"/>
-                <path refid="compile.classpath"/>
-            </classpath>
-            <formatter type="xml"/>
-            <batchtest todir="${test.report.home}">
-                <fileset dir="${build.test.home}" includes="**/*Test.class"/>
-            </batchtest>
-        </junit>
-    </target>
-
-    <target name="junitreport" depends="test">
-        <junitreport todir="${test.report.home}">
-            <fileset dir="${test.report.home}" includes="TEST-*.xml"/>
-            <report todir="${test.report.home}"/>
-        </junitreport>
-    </target>
-
-    <!-- ============ all ============ -->
-    <target name="all" depends="clean,compile" description="Clean, compile uniquement"/>
 </project>

@@ -32,12 +32,12 @@ public class ModeInfoDisplay {
                 "Niveau de sécurité : Pédagogique uniquement !";
 
         view.dhStepsArea.setText(String.format("""
-            🔧 CONFIGURATION ACTUELLE
+              CONFIGURATION ACTUELLE
             ═══════════════════════════════════════
             
             Mode : %s
             
-            📊 Taille des nombres :
+              Taille des nombres :
             • p : %s bits (%s chiffres décimaux)
             • g : %s
             • a : %s bits (secret Alice)
@@ -45,19 +45,19 @@ public class ModeInfoDisplay {
             
             %s
             
-            ⏱️  Temps de calcul estimé : %s
+               Temps de calcul estimé : %s
             
-            💡 En mode réaliste, les calculs prennent plus de temps
+              En mode réaliste, les calculs prennent plus de temps
                mais correspondent aux standards cryptographiques actuels.
             
-            🔐 Standards industriels :
+              Standards industriels :
                • TLS 1.2 : 2048 bits minimum
                • TLS 1.3 : Préfère ECDH (courbes elliptiques)
                • Banques : 2048-4096 bits
             
             Cliquez sur "Étape suivante" pour commencer la démonstration.
             """,
-                realisticMode ? "🔐 Réaliste" : "📚 Pédagogique",
+                realisticMode ? "  Réaliste" : "  Pédagogique",
                 bitSize,
                 realisticMode ? params.getP().toString().length() : params.getP(),
                 params.getG(),
@@ -68,12 +68,12 @@ public class ModeInfoDisplay {
         ));
 
         view.exchangeArea.setText(realisticMode ? """
-            ⚠️  MODE RÉALISTE ACTIVÉ
+               MODE RÉALISTE ACTIVÉ
             
             Les nombres utilisés sont de taille cryptographique
             réelle.
             
-            🔢 Exemple de valeurs (tronquées pour affichage) :
+              Exemple de valeurs (tronquées pour affichage) :
             
             p ≈ 1340...7891 (nombre premier sûr)
             g = 2 (générateur standard)
@@ -81,10 +81,10 @@ public class ModeInfoDisplay {
             Ces valeurs sont générées aléatoirement et changent
             à chaque génération.
             
-            💡 Conseil : Utilisez le mode automatique pour une
+              Conseil : Utilisez le mode automatique pour une
                démonstration fluide avec ces grands nombres.
             """ : """
-            📚 MODE PÉDAGOGIQUE ACTIF
+              MODE PÉDAGOGIQUE ACTIF
             
             Les petits nombres (p=23, g=5) permettent de :
             • Suivre les calculs à la main
@@ -101,15 +101,15 @@ public class ModeInfoDisplay {
      */
     public void displayInitialInfo() {
         view.dhStepsArea.setText("""
-            🎓 BIENVENUE DANS LA DÉMO DIFFIE-HELLMAN
+              BIENVENUE DANS LA DÉMO DIFFIE-HELLMAN
             
-            📚 Mode pédagogique : petits nombres faciles à suivre
-            🔐 Mode réaliste : nombres cryptographiques réels
+              Mode pédagogique : petits nombres faciles à suivre
+              Mode réaliste : nombres cryptographiques réels
             
             Cliquez sur "Étape suivante" pour suivre le protocole pas à pas,
             ou "Démo DH complète" pour voir toutes les étapes.
             
-            💡 Astuce : Observez les panneaux colorés d'Alice et Bob !
+              Astuce : Observez les panneaux colorés d'Alice et Bob !
             """);
     }
 }

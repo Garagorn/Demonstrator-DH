@@ -50,9 +50,9 @@ public class Controleur {
         realisticMode = false;
         currentParams = DHParameters.createDemoParameters();
         
-        view.btnRealisticMode.setText("🎲 Passer en mode réaliste");
+        view.btnRealisticMode.setText(" Passer en mode réaliste");
         view.btnGenerateNew.setEnabled(false);
-        view.modeLabel.setText("📚 Mode : Pédagogique (petits nombres)");
+        view.modeLabel.setText(" Mode : Pédagogique (petits nombres)");
         view.modeLabel.setForeground(new Color(0, 100, 200));
     }
 
@@ -63,9 +63,9 @@ public class Controleur {
         realisticMode = true;
         generateNewRealisticValues();
         
-        view.btnRealisticMode.setText("📚 Retour mode pédagogique");
+        view.btnRealisticMode.setText(" Retour mode pédagogique");
         view.btnGenerateNew.setEnabled(true);
-        view.modeLabel.setText("🔐 Mode : Réaliste (cryptographie standard)");
+        view.modeLabel.setText(" Mode : Réaliste (cryptographie standard)");
         view.modeLabel.setForeground(new Color(200, 0, 100));
     }
 
@@ -88,7 +88,7 @@ public class Controleur {
     private void generateNewRealisticValues() {
         if (!realisticMode) return;
         
-        view.statusLabel.setText("⏳ Génération de nombres premiers sûrs...");
+        view.statusLabel.setText(" Génération de nombres premiers sûrs...");
         
         // Utiliser SwingWorker pour ne pas bloquer l'interface
         SwingWorker<DHParameters, Void> worker = new SwingWorker<>() {
@@ -180,7 +180,7 @@ public class Controleur {
         view.updateBobPublic("?");
         view.updateSharedSecret("?");
         view.resetHighlights();
-        view.statusLabel.setText("🔄 Réinitialisé");
+        view.statusLabel.setText(" Réinitialisé");
         
         if (autoTimer != null) {
             autoTimer.stop();
@@ -194,7 +194,7 @@ public class Controleur {
      */
     private void startAutoDemo() {
         clearAll();
-        view.statusLabel.setText("▶️  Mode automatique démarré...");
+        view.statusLabel.setText("  Mode automatique démarré...");
 
         Timer startTimer = new Timer(1000, e -> {
             runStep(); // Première étape immédiate
@@ -203,7 +203,7 @@ public class Controleur {
             autoTimer = new Timer(delay, evt -> {
                 if (currentStep == -1 || currentStep > 8) {
                     autoTimer.stop();
-                    view.statusLabel.setText("🎉 Démo automatique terminée !");
+                    view.statusLabel.setText(" Démo automatique terminée !");
                     flashSuccess();
                 } else {
                     runStep();

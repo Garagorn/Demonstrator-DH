@@ -34,40 +34,40 @@ public class FullDemoDisplay {
         view.updateSharedSecret(params.formatNumber(params.getSharedSecretAlice()));
 
         String modeWarning = realisticMode ?
-                "\n⚠️  MODE RÉALISTE : Les nombres sont tronqués pour l'affichage\n" +
+                "\nMODE RÉALISTE : Les nombres sont tronqués pour l'affichage\n" +
                         "    Seuls les premiers et derniers chiffres sont montrés.\n" : "";
 
         // Affichage des étapes
         view.dhStepsArea.setText(String.format("""
-            🔐 PROTOCOLE DIFFIE-HELLMAN COMPLET
+            PROTOCOLE DIFFIE-HELLMAN COMPLET
             %s
             ═══════════════════════════════════════
-            📋 PHASE 1 : INITIALISATION
+               PHASE 1 : INITIALISATION
             ═══════════════════════════════════════
             
-            1️⃣ Paramètres publics convenus :
+               Paramètres publics convenus :
                • p = %s (%d bits)
                • g = %s
             
             ═══════════════════════════════════════
-            🔒 PHASE 2 : SECRETS PRIVÉS
+              PHASE 2 : SECRETS PRIVÉS
             ═══════════════════════════════════════
             
-            2️⃣ Alice choisit son secret privé :
+              Alice choisit son secret privé :
                • a = %s (%d bits)
             
-            3️⃣ Bob choisit son secret privé :
+              Bob choisit son secret privé :
                • b = %s (%d bits)
             
             ═══════════════════════════════════════
-            🧮 PHASE 3 : CALCULS PUBLICS
+              PHASE 3 : CALCULS PUBLICS
             ═══════════════════════════════════════
             
-            4️⃣ Alice calcule sa clé publique :
+              Alice calcule sa clé publique :
                A = g^a mod p
                A = %s
             
-            5️⃣ Bob calcule sa clé publique :
+              Bob calcule sa clé publique :
                B = g^b mod p
                B = %s
             
@@ -83,37 +83,37 @@ public class FullDemoDisplay {
 
         // Affichage de l'échange
         view.exchangeArea.setText(String.format("""
-            📤 ÉCHANGE DES CLÉS PUBLIQUES
+              ÉCHANGE DES CLÉS PUBLIQUES
             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             
-            👩 Alice envoie publiquement : A = %s
-               └─→ 🌐 [Internet] →─┐
+              Alice envoie publiquement : A = %s
+               └─→  [Internet] →─┐
                                     ↓
-            👨 Bob reçoit : A = %s
+              Bob reçoit : A = %s
             
-            👨 Bob envoie publiquement : B = %s
-               └─→ 🌐 [Internet] →─┐
+              Bob envoie publiquement : B = %s
+               └─→  [Internet] →─┐
                                     ↓
-            👩 Alice reçoit : B = %s
+              Alice reçoit : B = %s
             
-            ⚠️  Ces valeurs sont PUBLIQUES !
-            
-            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-            🔐 CALCUL DU SECRET PARTAGÉ
-            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-            
-            👩 Alice calcule : s = B^a mod p = %s 🔒
-            👨 Bob calcule : s = A^b mod p = %s 🔒
+               Ces valeurs sont PUBLIQUES !
             
             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-            ✅ VÉRIFICATION FINALE
+              CALCUL DU SECRET PARTAGÉ
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            
+              Alice calcule : s = B^a mod p = %s 
+              Bob calcule : s = A^b mod p = %s 
+            
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+              VÉRIFICATION FINALE
             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             
             %s LES SECRETS SONT IDENTIQUES !
             
             Secret partagé : %s
             
-            🎉 Communication sécurisée établie !
+              Communication sécurisée établie !
             
             %s
             """,
@@ -126,11 +126,11 @@ public class FullDemoDisplay {
                 params.getSharedSecretAlice().equals(params.getSharedSecretBob()) ? "✅" : "❌",
                 params.formatNumber(params.getSharedSecretAlice()),
                 realisticMode ?
-                        "💪 Ces nombres de " + params.getP().bitLength() + " bits sont impossibles\n" +
+                        "  Ces nombres de " + params.getP().bitLength() + " bits sont impossibles\n" +
                                 "   à casser avec la technologie actuelle !" :
-                        "💡"
+                        " "
         ));
 
-        view.statusLabel.setText("✅ Démo complète affichée");
+        view.statusLabel.setText("Démo complète affichée");
     }
 }
